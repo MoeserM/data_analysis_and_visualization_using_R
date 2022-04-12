@@ -309,7 +309,7 @@ With increased bubble sizes, there is some overplotting, so let's make the point
 
 ```{r}
 gapdata2007 %>% 
-  ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop)) +
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, size = pop, color = continent)) +
   geom_point(shape = 1, alpha = 0.5)
 ```
 
@@ -343,7 +343,8 @@ In fact, by just changing `line` to `point` in the code above works - and instea
 gapdata %>% 
   filter(country == "United States") %>% 
   ggplot(aes(x = year, y = lifeExp)) +
-  geom_point()
+  geom_point() + 
+  geom_line()
 ```
 
 
@@ -373,19 +374,4 @@ gapdata %>%
 
 This code works as expected - yes there is a lot of overplotting but that's just because we've included `r gapdata$country %>% n_distinct()` lines on a single plot.
 
-### Exercise {#chap04-ex-lineplot}
-
-Follow the step-by-step instructions to transform the above Figure into the following figure.
-
-```{r chap04-fig-lineplot2, fig.width=0.8*10, echo = FALSE, fig.height=0.8*4, fig.cap = "Lineplot exercise."}
-gapdata %>% 
-  ggplot(aes(x = year, y = lifeExp, group = country, colour=continent)) +
-  geom_line() +
-  facet_wrap(~continent) + 
-  theme_bw()
-```
-
--   Colour lines by continents: add `colour = continent` inside `aes()`;
--   Continents on separate facets: `+ facet_wrap(~continent)`;
--   Use a nicer colour scheme: `+ scale_colour_brewer(palette = "Paired")`.
 
