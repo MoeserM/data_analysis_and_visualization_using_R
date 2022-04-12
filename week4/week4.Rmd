@@ -218,7 +218,7 @@ We do this by adding `shape = 1` inside the `geom_point()`:
 ```{r}
 gapdata2007 %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp, color = continent)) +
-  geom_point(shape = 1)
+  geom_point(shape = 8)
 ```
 
 What if we put `shape` in the `aes()`
@@ -322,6 +322,7 @@ Alpha is an aesthetic to make geoms transparent, its values can range from 0 (in
 Let's plot the life expectancy in the United States over time:
 
 ```{r}
+gapdata <- gapminder
 gapdata %>% 
   filter(country == "United States") %>% 
   ggplot(aes(x = year, y = lifeExp)) +
@@ -364,7 +365,8 @@ So for drawing multiple lines, we need to add a `group` aesthetic, in this case 
 
 ```{r}
 gapdata %>% 
-  ggplot(aes(x = year, y = lifeExp, group = country)) +
+  ggplot(aes(x = year, y = lifeExp, group = country
+             )) +
   geom_line()
 ```
 
